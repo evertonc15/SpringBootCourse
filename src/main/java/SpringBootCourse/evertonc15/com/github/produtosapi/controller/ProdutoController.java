@@ -4,6 +4,7 @@ import SpringBootCourse.evertonc15.com.github.produtosapi.model.Produto;
 import SpringBootCourse.evertonc15.com.github.produtosapi.repository.ProdutoRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -45,5 +46,10 @@ public class ProdutoController {
                                  @RequestBody Produto produto){
         produto.setId(id);
         produtoRepository.save(produto);
+    }
+
+    @GetMapping
+    public List<Produto> buscarProdutos(@RequestParam("nome") String nome){
+        return produtoRepository.findByNome(nome);
     }
 }
